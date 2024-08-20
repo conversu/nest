@@ -1,9 +1,25 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-import { join } from 'path';
-import { DataSource, DataSourceOptions } from 'typeorm';
+import { join } from "path";
+import { DataSourceOptions } from "typeorm";
 
 
-function getConfig(env: string): DataSourceOptions {
+export function getDefaultConfig(): DataSourceOptions {
+
+    return {
+        type: 'postgres',
+        url: process.env.DATABASE_URL,
+        entities: [join(__dirname, '**', '*.entity.{ts,js}')],
+        synchronize: false,
+        logging: false,
+        migrations: [join(__dirname, 'migrations', '*.{js,ts}')],
+        migrationsRun: true,
+        logNotifications: false,
+        ssl: {
+            rejectUnauthorized: false,
+        },
+    } as DataSourceOptions;
+}
+
+export function getLocalConfig(env: string): DataSourceOptions {
 
     require('dotenv').config({
         path: env,
@@ -12,7 +28,7 @@ function getConfig(env: string): DataSourceOptions {
     return {
         type: 'postgres',
         host: process.env.DATABASE_HOST,
-        port: +process.env.DATABASE_PORT,
+        port: !!process.env.DATABASE_PORT ? Number(process.env.DATABASE_PORT) : process.env.DATABASE_PORT,
         username: process.env.DATABASE_USERNAME,
         password: String(process.env.DATABASE_PASSWORD),
         database: process.env.DATABASE_NAME,
@@ -28,16 +44,3 @@ function getConfig(env: string): DataSourceOptions {
         logNotifications: process.env.TYPEORM_LOGGING ? Boolean(process.env.TYPEORM_LOGGING) : false,
     } as DataSourceOptions;
 }
-
-
-const dataSource = (env: string) => {
-
-    const dataSourceOptions = getConfig(env);
-
-    const dataSource = new DataSource(dataSourceOptions);
-    dataSource.initialize();
-};
-
-
-
-export default { dataSource, getConfig };

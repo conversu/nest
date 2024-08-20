@@ -10,7 +10,11 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
+    "outDir": "/dist"
   },
+  "include": [
+     "/src"
+  ],
   "exclude": [
     "dist/",
     "**/*.test.ts",

@@ -1,4 +1,4 @@
-export class ColumnNumberTransformer {
+export class NumberTransformer {
     public to(data: number): number {
         return data;
     }

@@ -1,7 +1,7 @@
 import CryptoJS from 'crypto-js';
 
 
-export class ColumnLargeJsonTransformer<T> {
+export class LargeJsonTransformer<T> {
 
     private encrypt: boolean;
     private secret: string;

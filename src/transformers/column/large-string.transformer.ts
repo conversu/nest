@@ -2,7 +2,7 @@
 import CryptoJS from 'crypto-js';
 
 
-export class ColumnLargeStringTransformer {
+export class LargeStringTransformer {
 
     private encrypt: boolean;
     private secret: string;

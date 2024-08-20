@@ -3,7 +3,7 @@ import { encrypt } from "../../utils/aes";
 
 
 
-export class ColumnCryptographerTransformer {
+export class CryptographerTransformer {
 
     private secret: string;
 

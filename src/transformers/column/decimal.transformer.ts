@@ -1,4 +1,4 @@
-export class ColumnDecimalTransformer {
+export class DecimalTransformer {
 	public to(data: number | null): number | null {
 		return data;
 	}

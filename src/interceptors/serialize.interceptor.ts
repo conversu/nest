@@ -2,7 +2,7 @@ import { NestInterceptor, ExecutionContext, CallHandler, UseInterceptors } from 
 import { plainToInstance } from 'class-transformer';
 import { Observable, map } from 'rxjs';
 
-export interface ClassConstructor {
+interface ClassConstructor {
     new (...args: any[]): any;
 }
 

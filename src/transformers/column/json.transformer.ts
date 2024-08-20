@@ -1,6 +1,6 @@
 import CryptoJS from 'crypto-js';
 
-export class ColumnJsonTransformer {
+export class JsonTransformer {
     private encrypt: boolean;
     private secret: string;
 
