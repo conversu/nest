@@ -1,0 +1,49 @@
+{
+  "name": "@conversu/nest-js",
+  "version": "1.0.0",
+  "description": "Conversu tool kit for NestJS apis",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsup",
+    "types": "tsc --noEmit"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/conversu/nest-js.git"
+  },
+  "keywords": [
+    "nest",
+    "tools"
+  ],
+  "author": "Pablo Woinarovicz Ramos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/conversu/nest-js/issues"
+  },
+  "homepage": "https://github.com/conversu/nest-js#readme",
+  "dependencies": {
+    "@nestjs/common": "^10.4.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "cpf-cnpj-validator": "^1.0.3",
+    "crypto-js": "^4.2.0",
+    "date-fns": "^3.6.0",
+    "dotenv": "^16.4.5",
+    "node": "^22.6.0",
+    "rxjs": "^7.8.1",
+    "typeorm": "^0.3.17",
+    "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
+    "@types/node": "^22.4.1",
+    "@types/uuid": "^10.0.0",
+    "tsup": "^8.2.4"
+  }
+}
