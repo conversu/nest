@@ -1,5 +1,4 @@
-import { decrypt } from "dotenv";
-import { encrypt } from "../../utils/aes";
+import { encrypt, decrypt } from "../../utils/aes";
 
 
 

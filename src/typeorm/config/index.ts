@@ -2,7 +2,7 @@ import { join } from "path";
 import { DataSourceOptions } from "typeorm";
 
 
-export function getDefaultConfig(): DataSourceOptions {
+export function getDefaultConfig(basePath: string): DataSourceOptions {
 
     return {
         type: 'postgres',
@@ -10,7 +10,7 @@ export function getDefaultConfig(): DataSourceOptions {
         entities: [join(__dirname, '**', '*.entity.{ts,js}')],
         synchronize: false,
         logging: false,
-        migrations: [join(__dirname, 'migrations', '*.{js,ts}')],
+        migrations: [join(basePath, 'migrations', '*.{js,ts}')],
         migrationsRun: true,
         logNotifications: false,
         ssl: {
@@ -19,11 +19,13 @@ export function getDefaultConfig(): DataSourceOptions {
     } as DataSourceOptions;
 }
 
-export function getLocalConfig(env: string): DataSourceOptions {
+export function getLocalConfig(basePath: string): DataSourceOptions {
 
-    require('dotenv').config({
-        path: env,
-    });
+    if(!process.env.DATABASE_HOST){
+
+        throw new Error('No host configured at environment! You must load the environment before get the configuration.')
+    }
+
 
     return {
         type: 'postgres',
@@ -32,15 +34,17 @@ export function getLocalConfig(env: string): DataSourceOptions {
         username: process.env.DATABASE_USERNAME,
         password: String(process.env.DATABASE_PASSWORD),
         database: process.env.DATABASE_NAME,
-        entities: [join(__dirname, '**', '*.entity.{ts,js}')],
+        entities: [join(basePath, '**', '*.entity.{ts,js}')],
         synchronize: false,
         logging: process.env.TYPEORM_LOGGING ? Boolean(process.env.TYPEORM_LOGGING) : false,
-        migrations: [
-            !!process.env.NODE_ENV && process.env.NODE_ENV === 'production'
-                ? '/dist/migrations/*.js'
-                : join(__dirname, 'migrations', '*.{js,ts}'),
-        ],
+        migrations: [join(basePath, 'migrations', '*.{js,ts}')],
         migrationsRun: false,
         logNotifications: process.env.TYPEORM_LOGGING ? Boolean(process.env.TYPEORM_LOGGING) : false,
     } as DataSourceOptions;
+}
+
+export function loadEnv(env: string){
+    require('dotenv').config({
+        path: env,
+    });
 }
