@@ -1,6 +1,5 @@
 
-import { decrypt, encrypt } from '@conversu/commons/src/aes';
-import CryptoJS from 'crypto-js';
+import { aes } from '@conversu/commons';
 
 
 export class LargeStringTransformer {
@@ -22,7 +21,7 @@ export class LargeStringTransformer {
             let result = data;
 
             if (this.encrypt) {
-                result = encrypt(this.secret, result)?.toString() ?? 'transformation_error';
+                result = aes.encrypt(this.secret, result)?.toString() ?? 'transformation_error';
             }
 
             return Buffer.from(result, 'utf-8');
@@ -39,7 +38,7 @@ export class LargeStringTransformer {
         let result = data.toString('utf-8');
         try {
             if (this.encrypt) {
-                result = decrypt(this.secret, result) as string;
+                result = aes.decrypt(this.secret, result) as string;
             }
             return result;
         } catch (err) {

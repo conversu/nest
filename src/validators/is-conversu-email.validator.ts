@@ -10,7 +10,7 @@ export function IsConversuEmail(validationOptions?: ValidationOptions) {
             options: validationOptions,
             validator: {
                 validate(value: string, _args: ValidationArguments) {
-                    return isEmail(value) && value.toLowerCase().endsWith(process.env.CONVERSU_EMAIL_DOMAIN);
+                    return isEmail(value) && value.toLowerCase().endsWith('conversu.com.br');
                 },
                 defaultMessage(_args: ValidationArguments) {
                     return `Must be an institutional email.`;
