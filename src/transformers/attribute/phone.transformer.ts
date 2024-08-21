@@ -1,6 +1,7 @@
+import { formatPhone } from '@conversu/commons/src/format';
+import { maskPhone } from '@conversu/commons/src/mask';
 import { Transform, TransformFnParams } from 'class-transformer';
-import { maskPhone } from '../../utils/mask';
-import { formatPhone } from '../../utils/format';
+
 
 
 export function TransformPhone(type: 'FORMAT' | 'MASK') {

@@ -1,5 +1,4 @@
-import { encrypt, decrypt } from "../../utils/aes";
-
+import { decrypt, encrypt } from "@conversu/commons/src/aes";
 
 
 export class CryptographerTransformer {

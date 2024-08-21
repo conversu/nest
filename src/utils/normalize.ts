@@ -14,7 +14,7 @@ export function normalizeText(
     params: { toUpperCase: boolean; replaceSpace: boolean; replaceSpecialChars: string[] | null },
 ) {
     let result = value;
-    if (value) {
+    if (result) {
         result = result.trim().replace('\n', '');
 
         result = result.replace(/\n/g, '');
@@ -29,7 +29,7 @@ export function normalizeText(
 
         if (params.replaceSpecialChars) {
             for (const char of params.replaceSpecialChars) {
-                if (value.includes(char)) {
+                if (result.includes(char)) {
                     const regex = new RegExp(escapeRegExp(char), 'g');
                     result = result.replace(regex, '');
                 }
