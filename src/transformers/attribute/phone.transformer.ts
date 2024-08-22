@@ -1,4 +1,4 @@
-import { mask, format } from '@conversu/commons';
+import { MASK, FORMAT } from '@conversu/commons';
 import { Transform, TransformFnParams } from 'class-transformer';
 
 
@@ -10,9 +10,9 @@ export function TransformPhone(type: 'FORMAT' | 'MASK') {
         }
 
         if (type === 'MASK') {
-            return mask.maskPhone(value);
+            return MASK.Phone(value);
         }
 
-        return format.formatPhone(value);
+        return FORMAT.Phone(value);
     });
 }

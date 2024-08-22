@@ -1,4 +1,4 @@
-import { aes } from '@conversu/commons';
+import { AES } from '@conversu/commons';
 
 
 export class LargeJsonTransformer<T> {
@@ -21,7 +21,7 @@ export class LargeJsonTransformer<T> {
             }
 
             if (this.encrypt) {
-                result = aes.encrypt(this.secret, result)?.toString() ?? 'transformation_error';
+                result = AES.encrypt(this.secret, result)?.toString() ?? 'transformation_error';
             }
 
             return Buffer.from(result, 'utf-8');
@@ -42,7 +42,7 @@ export class LargeJsonTransformer<T> {
             let result = content;
             if (this.encrypt) {
 
-                result = aes.decrypt(this.secret, result) as string;
+                result = AES.decrypt(this.secret, result) as string;
 
             }
 

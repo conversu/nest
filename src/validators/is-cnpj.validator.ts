@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { registerDecorator, ValidationOptions, ValidationArguments } from 'class-validator';
-import { cnpj as cnpjValidator } from 'cpf-cnpj-validator';
+import { VALIDATE } from '@conversu/commons';
+
 
 export function IsCnpj(validationOptions?: ValidationOptions) {
     return function (object: any, propertyName: string) {
@@ -11,7 +12,7 @@ export function IsCnpj(validationOptions?: ValidationOptions) {
             options: validationOptions,
             validator: {
                 validate(value: string, _args: ValidationArguments) {
-                    return cnpjValidator.isValid(value);
+                    return VALIDATE.Cnpj(value);
                 },
                 defaultMessage(_args: ValidationArguments) {
                     return `Invalid CNPJ. Must have 14 numeric characters.`;

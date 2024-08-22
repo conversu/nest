@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import {  DataSource as TypeormDataSource, DataSourceOptions } from 'typeorm';
+import { DataSource as TypeormDataSource, DataSourceOptions } from 'typeorm';
 import { join } from 'path';
 import fs from 'fs';
 import { DatasourceConfig } from '..';
@@ -41,6 +41,7 @@ class DSInitializer {
         }
 
         this.basePath = path;
+
         return this;
     }
 
@@ -53,6 +54,10 @@ class DSInitializer {
      */
     loadEnvironment(environment: string): DSInitializer {
 
+        if (this.basePath.includes('dist')) {
+            this.basePath = join(this.basePath.split('dist')[0])
+        }
+
         const path = join(this.basePath, environment);
 
         if (!path || !fs.existsSync(path)) {
@@ -62,6 +67,7 @@ class DSInitializer {
 
         DatasourceConfig.loadEnv(path);
         return this;
+
     }
 
     /**
@@ -144,6 +150,34 @@ class DSInitializer {
 
     private setOptions(options: DataSourceOptions) {
         this.options = Object.assign(options, { type: this.type });
+    }
+
+    /**
+     * Set migrations path
+     * 
+     * @param path {string | string[]} - migrations path
+     * @returns 
+     */
+    setMigrations(path: string | string[]){
+
+        this.options = Object.assign(this.options, {
+            migrations: path
+        })
+        return this;
+    }
+
+    /**
+     * Set entities path
+     * 
+     * @param path {string | string[]} - migrations path
+     * @returns 
+     */
+    setEntities(path: string | string[]){
+
+        this.options = Object.assign(this.options, {
+            entities: path
+        })
+        return this;
     }
 
     /**

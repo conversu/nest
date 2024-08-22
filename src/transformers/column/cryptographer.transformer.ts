@@ -1,4 +1,4 @@
-import { aes } from "@conversu/commons";
+import { AES } from "@conversu/commons";
 
 
 export class CryptographerTransformer {
@@ -10,11 +10,11 @@ export class CryptographerTransformer {
     }
 
     public to(data: string | null): string | null {
-        return aes.encrypt(this.secret, data);
+        return AES.encrypt(this.secret, data);
     }
 
     public from(data: string | null): string | null {
-        return aes.decrypt(this.secret, data);
+        return AES.decrypt(this.secret, data);
     }
 }
 

@@ -1,5 +1,5 @@
 
-import { aes } from '@conversu/commons';
+import { AES } from '@conversu/commons';
 
 
 export class LargeStringTransformer {
@@ -21,7 +21,7 @@ export class LargeStringTransformer {
             let result = data;
 
             if (this.encrypt) {
-                result = aes.encrypt(this.secret, result)?.toString() ?? 'transformation_error';
+                result = AES.encrypt(this.secret, result)?.toString() ?? 'transformation_error';
             }
 
             return Buffer.from(result, 'utf-8');
@@ -38,7 +38,7 @@ export class LargeStringTransformer {
         let result = data.toString('utf-8');
         try {
             if (this.encrypt) {
-                result = aes.decrypt(this.secret, result) as string;
+                result = AES.decrypt(this.secret, result) as string;
             }
             return result;
         } catch (err) {
