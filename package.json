@@ -1,6 +1,6 @@
 {
   "name": "@conversu/nest-js",
-  "version": "5.2.0",
+  "version": "5.4.0",
   "description": "Conversu tool kit for NestJS apis",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
